@@ -5,7 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Amporis.Xamarin.Forms.ColorPicker" Version="1.0.23" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Colours">
+      <HintPath>..\..\Colours\Colours\bin\Release\netstandard2.0\Colours.dll</HintPath>
+    </Reference>
+    <Reference Include="IColours">
+      <HintPath>..\..\..\Interfaces\IColours\IColours\bin\Release\netstandard2.0\IColours.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
