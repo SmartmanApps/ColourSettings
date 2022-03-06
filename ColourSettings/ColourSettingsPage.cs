@@ -5,10 +5,10 @@ using Xamarin.Essentials;
 
 namespace SmartmanApps {public class ColourSettingsPage :ContentPage {
 #region variables
-public ColorPickerEntry AccentColourEntry,BgColourEntry,FgColourEntry,WarnColourEntry;
+public ColorPickerEntry AccentColourEntry,BgColourEntry,EntryBgColourEntry,EntryTextColourEntry,FgColourEntry,WarnColourEntry;
 public FontAttributes FontProperty=FontAttributes.Bold;
 public Grid ColourSettingsGrid;
-public Label AccentLabel,BgLabel,FgLabel,WarnLabel;
+public Label AccentLabel,BgLabel,EntryBgLabel,EntryTextLabel,FgLabel,WarnLabel;
 #endregion
 #region constructor
 public ColourSettingsPage(IColours Colours)
@@ -23,12 +23,28 @@ AccentColourEntry=new ColorPickerEntry{
     BackgroundColor=Color.White,
     Color=Colours.Accent,
     };
+//AccentColourEntry.SetBinding(ColorPickerEntry.TextColorProperty,new Binding(nameof(EntryTextColourEntry.Color),source:EntryTextColourEntry));
+//AccentColourEntry.SetBinding(ColorPickerEntry.BackgroundColorProperty,new Binding(nameof(EntryBgColourEntry.Color),source:EntryBgColourEntry));
 #endregion
 #region BgColourEntry
 BgColourEntry=new ColorPickerEntry{
     EditAlfa=false,
     BackgroundColor=Color.White,
     Color=Colours.Background,
+    };
+#endregion
+#region EntryBgColourEntry
+EntryBgColourEntry=new ColorPickerEntry{
+    EditAlfa=false,
+    BackgroundColor=Color.White,
+    Color=Colours.EntryBackground,
+    };
+#endregion
+#region EntryTextColourEntry
+EntryTextColourEntry=new ColorPickerEntry{
+    EditAlfa=false,
+    BackgroundColor=Color.White,
+    Color=Colours.EntryText,
     };
 #endregion
 #region FgColourEntry
@@ -63,6 +79,22 @@ BgLabel=new Label{
 BgLabel.SetBinding(Label.TextColorProperty,new Binding(nameof(FgColourEntry.Color),source:FgColourEntry));
 BgLabel.SetBinding(Label.BackgroundProperty,new Binding(nameof(BgColourEntry.Color),source:BgColourEntry));
 #endregion
+#region EntryBgLabel
+EntryBgLabel=new Label{
+    Text="Entry background colour",
+    FontAttributes=FontProperty,
+    };
+EntryBgLabel.SetBinding(Label.TextColorProperty,new Binding(nameof(EntryTextColourEntry.Color),source:EntryTextColourEntry));
+EntryBgLabel.SetBinding(Label.BackgroundColorProperty,new Binding(nameof(EntryBgColourEntry.Color),source:EntryBgColourEntry));
+#endregion
+#region EntryTextLabel
+EntryTextLabel=new Label{
+    Text="Entry text colour",
+    FontAttributes=FontProperty,
+    };
+EntryTextLabel.SetBinding(Label.TextColorProperty,new Binding(nameof(EntryTextColourEntry.Color),source:EntryTextColourEntry));
+EntryTextLabel.SetBinding(Label.BackgroundColorProperty,new Binding(nameof(EntryBgColourEntry.Color),source:EntryBgColourEntry));
+#endregion
 #region FgLabel
 FgLabel=new Label{
     Text="Foreground (text) colour",
@@ -90,6 +122,8 @@ ColourSettingsGrid.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto})
 ColourSettingsGrid.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});
 ColourSettingsGrid.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});
 ColourSettingsGrid.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});
+ColourSettingsGrid.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});
+ColourSettingsGrid.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});
 ColourSettingsGrid.Children.Add(BgLabel,0,0);
 ColourSettingsGrid.Children.Add(BgColourEntry,1,0);
 ColourSettingsGrid.Children.Add(FgLabel,0,1);
@@ -98,6 +132,10 @@ ColourSettingsGrid.Children.Add(AccentLabel,0,2);
 ColourSettingsGrid.Children.Add(AccentColourEntry,1,2);
 ColourSettingsGrid.Children.Add(WarnLabel,0,3);
 ColourSettingsGrid.Children.Add(WarnColourEntry,1,3);
+ColourSettingsGrid.Children.Add(EntryTextLabel,0,4);
+ColourSettingsGrid.Children.Add(EntryTextColourEntry,1,4);
+ColourSettingsGrid.Children.Add(EntryBgLabel,0,5);
+ColourSettingsGrid.Children.Add(EntryBgColourEntry,1,5);
 #endregion
 }
 #region methods
